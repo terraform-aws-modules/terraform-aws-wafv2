@@ -26,14 +26,14 @@ module "regex_pattern_set" {
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.75 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.75 |
 
 ## Modules
@@ -43,13 +43,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_wafv2_regex_pattern_set.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_regex_pattern_set) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created | `bool` | `true` | no |
 | <a name="input_description"></a> [description](#input\_description) | A friendly description of the regex pattern set | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | A friendly name of the regex pattern set | `string` | n/a | yes |
@@ -61,7 +61,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the regex pattern set |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the regex pattern set |
 | <a name="output_lock_token"></a> [lock\_token](#output\_lock\_token) | A token used for optimistic locking |
