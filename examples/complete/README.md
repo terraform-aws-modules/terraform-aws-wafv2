@@ -18,20 +18,20 @@ Note that this example may create resources which cost money. Run `terraform des
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.75 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.75 |
 
 ## Modules
 
 | Name | Source | Version |
-| ---- | ------ | ------- |
+|------|--------|---------|
 | <a name="module_disabled"></a> [disabled](#module\_disabled) | ../.. | n/a |
 | <a name="module_ip_set"></a> [ip\_set](#module\_ip\_set) | ../../modules/ip-set | n/a |
 | <a name="module_wafv2"></a> [wafv2](#module\_wafv2) | ../.. | n/a |
@@ -39,7 +39,7 @@ Note that this example may create resources which cost money. Run `terraform des
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_cloudwatch_log_group.waf](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudwatch_log_group) | resource |
 
 ## Inputs
@@ -49,7 +49,7 @@ No inputs.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_ip_set_arn"></a> [ip\_set\_arn](#output\_ip\_set\_arn) | The ARN of the IP set |
 | <a name="output_ip_set_id"></a> [ip\_set\_id](#output\_ip\_set\_id) | The ID of the IP set |
 | <a name="output_logging_configuration_id"></a> [logging\_configuration\_id](#output\_logging\_configuration\_id) | The ID of the logging configuration |

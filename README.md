@@ -96,14 +96,14 @@ For managing multiple similar resources, see [wrappers](https://github.com/terra
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.75 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.75 |
 
 ## Modules
@@ -113,7 +113,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_wafv2_web_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl) | resource |
 | [aws_wafv2_web_acl_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_association) | resource |
 | [aws_wafv2_web_acl_logging_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_logging_configuration) | resource |
@@ -121,7 +121,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_association_config"></a> [association\_config](#input\_association\_config) | Configuration for body inspection size limits per resource type. Keys are resource types (e.g., `CLOUDFRONT`, `API_GATEWAY`, `COGNITO_USER_POOL`, `APP_RUNNER_SERVICE`, `VERIFIED_ACCESS_INSTANCE`) | <pre>map(object({<br/>    default_size_inspection_limit = string<br/>  }))</pre> | `{}` | no |
 | <a name="input_association_resource_arns"></a> [association\_resource\_arns](#input\_association\_resource\_arns) | Map of resource ARNs to associate with the Web ACL. Key is a friendly name, value is the resource ARN | `map(string)` | `{}` | no |
 | <a name="input_captcha_config"></a> [captcha\_config](#input\_captcha\_config) | CAPTCHA configuration for the Web ACL. Specifies how long a CAPTCHA timestamp is considered valid | <pre>object({<br/>    immunity_time_property = object({<br/>      immunity_time = number<br/>    })<br/>  })</pre> | `null` | no |
@@ -146,7 +146,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_logging_configuration_id"></a> [logging\_configuration\_id](#output\_logging\_configuration\_id) | The ID of the WAF logging configuration |
 | <a name="output_web_acl_application_integration_url"></a> [web\_acl\_application\_integration\_url](#output\_web\_acl\_application\_integration\_url) | The URL to use in SDK integrations with managed rule groups |
 | <a name="output_web_acl_arn"></a> [web\_acl\_arn](#output\_web\_acl\_arn) | The ARN of the Web ACL |
