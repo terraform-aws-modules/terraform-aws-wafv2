@@ -78,6 +78,69 @@ module "wafv2" {
       }
     }
 
+    # Managed rule group with scope_down_statement using regex_match_statement
+    # Excludes specific URI paths from the admin protection rule set
+    admin-protection-scoped = {
+      priority        = 4
+      override_action = "none"
+
+      statement = {
+        managed_rule_group_statement = {
+          name        = "AWSManagedRulesAdminProtectionRuleSet"
+          vendor_name = "AWS"
+
+          scope_down_statement = {
+            regex_match_statement = {
+              regex_string = "^/admin/.*"
+              field_to_match = {
+                uri_path = {}
+              }
+              text_transformations = [
+                {
+                  priority = 0
+                  type     = "LOWERCASE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+
+    # Managed rule group with scope_down_statement using not_statement
+    # Applies the common rule set only to requests NOT matching a specific path
+    common-rules-scoped = {
+      priority        = 5
+      override_action = "none"
+
+      statement = {
+        managed_rule_group_statement = {
+          name        = "AWSManagedRulesCommonRuleSet"
+          vendor_name = "AWS"
+
+          scope_down_statement = {
+            not_statement = {
+              statement = {
+                byte_match_statement = {
+                  positional_constraint = "STARTS_WITH"
+                  search_string         = "/api/health"
+                  field_to_match = {
+                    uri_path = {}
+                  }
+                  text_transformations = [
+                    {
+                      priority = 0
+                      type     = "LOWERCASE"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     # IP set reference rule
     block-bad-ips = {
       priority = 10
