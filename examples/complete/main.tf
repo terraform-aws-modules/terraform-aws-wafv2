@@ -233,6 +233,54 @@ module "wafv2" {
         }
       }
     }
+
+    # Nested compound: AND containing an OR among its child statements.
+    # Demonstrates the L2 OR-inside-AND path together with the byte_match
+    # `body` field-target — both shipped in this PR.
+    nested-compound-demo = {
+      priority = 60
+      action   = "block"
+
+      statement = {
+        and_statement = {
+          statements = [
+            {
+              geo_match_statement = {
+                country_codes = ["US"]
+              }
+            },
+            {
+              or_statement = {
+                statements = [
+                  {
+                    byte_match_statement = {
+                      positional_constraint = "CONTAINS"
+                      search_string         = "DROP TABLE"
+                      field_to_match = {
+                        body = {
+                          oversize_handling = "MATCH"
+                        }
+                      }
+                      text_transformations = [
+                        {
+                          priority = 0
+                          type     = "LOWERCASE"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    ip_set_reference_statement = {
+                      arn = module.ip_set.arn
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
   }
 
   # Inline logging configuration
