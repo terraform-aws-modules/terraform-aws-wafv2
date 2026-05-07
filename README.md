@@ -72,12 +72,18 @@ module "wafv2" {
 }
 ```
 
+> **BREAKING CHANGE (next major release):** the AWS provider floor is bumped from `>= 5.75` to `>= 6.37` to ship the standalone `aws_wafv2_web_acl_rule` and other resources added in provider v6.37.0+. Consumers pinned to `aws ~> 5.x` must upgrade.
+
 ## Submodules
 
 - [ip-set](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/ip-set) - Manages WAF v2 IP sets
 - [regex-pattern-set](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/regex-pattern-set) - Manages WAF v2 regex pattern sets
 - [web-acl-association](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/web-acl-association) - Manages WAF v2 Web ACL associations
 - [logging-configuration](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/logging-configuration) - Manages WAF v2 logging configuration
+- [rule-group](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/rule-group) - Manages WAF v2 custom rule groups (reusable rule sets with fixed WCU capacity)
+- [web-acl-rule](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/web-acl-rule) - Manages a single rule attached to an existing Web ACL (provider v6.37.0+, solves IP set deletion-ordering errors)
+- [web-acl-rule-group-association](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/web-acl-rule-group-association) - Associates a custom or managed rule group with an existing Web ACL
+- [api-key](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/modules/api-key) - Manages WAFv2 API keys for CAPTCHA / JavaScript challenge token domains
 
 ## Examples
 
@@ -87,6 +93,10 @@ module "wafv2" {
 - [Regex Pattern Set](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/regex-pattern-set) - Regex pattern set submodule
 - [Web ACL Association](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/web-acl-association) - Web ACL association with a Cognito User Pool
 - [Logging Configuration](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/logging-configuration) - Logging configuration with CloudWatch Logs
+- [Rule Group](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/rule-group) - Custom rule group with sample rules
+- [Web ACL Rule](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/web-acl-rule) - Standalone rule attached to a Web ACL (deletion-ordering safe)
+- [Web ACL Rule Group Association](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/web-acl-rule-group-association) - Associate a managed and a custom rule group with a Web ACL
+- [API Key](https://github.com/terraform-aws-modules/terraform-aws-wafv2/tree/master/examples/api-key) - WAFv2 API key for CAPTCHA token domains
 
 ## Module Wrappers
 
@@ -98,13 +108,13 @@ For managing multiple similar resources, see [wrappers](https://github.com/terra
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.75 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.37 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.75 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.37 |
 
 ## Modules
 
