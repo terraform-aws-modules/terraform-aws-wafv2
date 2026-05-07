@@ -141,6 +141,108 @@ module "wafv2" {
       }
     }
 
+    # Managed rule group with scope_down_statement using and_statement
+    # Applies the common rule set only to requests matching a specific path AND a http method POST
+    common-rules-scoped-with-and = {
+      priority        = 5
+      override_action = "none"
+
+      statement = {
+        managed_rule_group_statement = {
+          name        = "AWSManagedRulesCommonRuleSet"
+          vendor_name = "AWS"
+
+          scope_down_statement = {
+            and_statement = {
+              statements = [
+                {
+                  byte_match_statement = {
+                    positional_constraint = "STARTS_WITH"
+                    search_string         = "/login"
+                    field_to_match = {
+                      uri_path = {}
+                    }
+                    text_transformations = [
+                      {
+                        priority = 0
+                        type     = "LOWERCASE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  byte_match_statement = {
+                    search_string = "POST"
+                    field_to_match = {
+                      method = "{}"
+                    }
+                    text_transformations = [{
+                      priority = 0
+                      type     = "NONE"
+                    }]
+                    priority              = 0
+                    type                  = "NONE"
+                    positional_constraint = "EXACTLY"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+
+    # Managed rule group with scope_down_statement using or_statement
+    # Applies the common rule set only to requests matching a specific path OR a specific body
+    common-rules-scoped-with-or = {
+      priority        = 5
+      override_action = "none"
+
+      statement = {
+        managed_rule_group_statement = {
+          name        = "AWSManagedRulesCommonRuleSet"
+          vendor_name = "AWS"
+
+          scope_down_statement = {
+            or_statement = {
+              statements = [
+                {
+                  byte_match_statement = {
+                    positional_constraint = "STARTS_WITH"
+                    search_string         = "/login"
+                    field_to_match = {
+                      uri_path = {}
+                    }
+                    text_transformations = [
+                      {
+                        priority = 0
+                        type     = "LOWERCASE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  byte_match_statement = {
+                    search_string = "action: login"
+                    field_to_match = {
+                      body = "{}"
+                    }
+                    text_transformations = [{
+                      priority = 0
+                      type     = "NONE"
+                    }]
+                    priority              = 0
+                    type                  = "NONE"
+                    positional_constraint = "EXACTLY"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+
     # IP set reference rule
     block-bad-ips = {
       priority = 10
