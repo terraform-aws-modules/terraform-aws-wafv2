@@ -49,16 +49,17 @@ module "wafv2" {
 
 ## Features
 
+- Full coverage of AWS provider WAFv2 surface: every WAFv2 resource is supported by the root module or a submodule
 - AWS WAF v2 Web ACL with comprehensive rule statement support
 - All 12+ statement types: byte match, geo match, IP set reference, label match, managed rule group, rate based, regex match, regex pattern set reference, rule group reference, size constraint, SQLi match, XSS match
-- Compound statements (AND, OR, NOT) with 2 levels of nesting
+- Compound statements (AND, OR, NOT) with 2 levels of nesting, including AND/OR inside `scope_down_statement`
 - Dual-mode actions: simple string (`"allow"`, `"block"`, `"count"`, `"captcha"`, `"challenge"`) or objects with custom response/request handling
 - Custom response bodies
 - CAPTCHA and challenge configuration
 - Association configuration for request body size limits
 - Optional inline Web ACL associations
 - Optional inline logging configuration
-- Submodules for IP sets, regex pattern sets, Web ACL associations, and logging configuration
+- Submodules for IP sets, regex pattern sets, Web ACL associations, logging configuration, custom rule groups, standalone Web ACL rules, Web ACL ↔ rule group associations, and CAPTCHA API keys
 
 ## Conditional Creation
 
@@ -71,8 +72,6 @@ module "wafv2" {
   create = false
 }
 ```
-
-> **BREAKING CHANGE (next major release):** the AWS provider floor is bumped from `>= 5.75` to `>= 6.37` to ship the standalone `aws_wafv2_web_acl_rule` and other resources added in provider v6.37.0+. Consumers pinned to `aws ~> 5.x` must upgrade.
 
 ## Submodules
 

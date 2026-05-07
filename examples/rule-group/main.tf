@@ -51,7 +51,7 @@ module "rule_group" {
           field_to_match = {
             uri_path = {}
           }
-          text_transformation = [
+          text_transformations = [
             {
               priority = 0
               type     = "LOWERCASE"
