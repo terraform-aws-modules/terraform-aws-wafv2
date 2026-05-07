@@ -144,7 +144,7 @@ module "wafv2" {
     # Managed rule group with scope_down_statement using and_statement
     # Applies the common rule set only to requests matching a specific path AND a http method POST
     common-rules-scoped-with-and = {
-      priority        = 5
+      priority        = 6
       override_action = "none"
 
       statement = {
@@ -172,17 +172,17 @@ module "wafv2" {
                 },
                 {
                   byte_match_statement = {
-                    search_string = "POST"
-                    field_to_match = {
-                      method = "{}"
-                    }
-                    text_transformations = [{
-                      priority = 0
-                      type     = "NONE"
-                    }]
-                    priority              = 0
-                    type                  = "NONE"
                     positional_constraint = "EXACTLY"
+                    search_string         = "POST"
+                    field_to_match = {
+                      method = {}
+                    }
+                    text_transformations = [
+                      {
+                        priority = 0
+                        type     = "NONE"
+                      }
+                    ]
                   }
                 }
               ]
@@ -195,7 +195,7 @@ module "wafv2" {
     # Managed rule group with scope_down_statement using or_statement
     # Applies the common rule set only to requests matching a specific path OR a specific body
     common-rules-scoped-with-or = {
-      priority        = 5
+      priority        = 7
       override_action = "none"
 
       statement = {
@@ -223,17 +223,19 @@ module "wafv2" {
                 },
                 {
                   byte_match_statement = {
-                    search_string = "action: login"
-                    field_to_match = {
-                      body = "{}"
-                    }
-                    text_transformations = [{
-                      priority = 0
-                      type     = "NONE"
-                    }]
-                    priority              = 0
-                    type                  = "NONE"
                     positional_constraint = "EXACTLY"
+                    search_string         = "action: login"
+                    field_to_match = {
+                      body = {
+                        oversize_handling = "CONTINUE"
+                      }
+                    }
+                    text_transformations = [
+                      {
+                        priority = 0
+                        type     = "NONE"
+                      }
+                    ]
                   }
                 }
               ]
@@ -284,6 +286,58 @@ module "wafv2" {
           limit                 = 1000
           aggregate_key_type    = "IP"
           evaluation_window_sec = 300
+        }
+      }
+    }
+
+    # Rate-based rule with compound scope_down_statement.
+    # Rate-limits only login POSTs to /login (URI AND method match).
+    rate-limit-login-scoped = {
+      priority = 31
+      action   = "block"
+
+      statement = {
+        rate_based_statement = {
+          limit                 = 100
+          aggregate_key_type    = "IP"
+          evaluation_window_sec = 300
+
+          scope_down_statement = {
+            and_statement = {
+              statements = [
+                {
+                  byte_match_statement = {
+                    positional_constraint = "STARTS_WITH"
+                    search_string         = "/login"
+                    field_to_match = {
+                      uri_path = {}
+                    }
+                    text_transformations = [
+                      {
+                        priority = 0
+                        type     = "LOWERCASE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  byte_match_statement = {
+                    positional_constraint = "EXACTLY"
+                    search_string         = "POST"
+                    field_to_match = {
+                      method = {}
+                    }
+                    text_transformations = [
+                      {
+                        priority = 0
+                        type     = "NONE"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
         }
       }
     }
