@@ -15,14 +15,26 @@ variable "putin_khuylo" {
 }
 
 variable "name" {
-  description = "A friendly name of the Web ACL"
+  description = "A friendly name of the Web ACL. Mutually exclusive with `name_prefix`"
   type        = string
-  default     = ""
+  default     = null
+}
+
+variable "name_prefix" {
+  description = "Creates a unique name beginning with the specified prefix. Mutually exclusive with `name` (provider rejects both being set at apply time)"
+  type        = string
+  default     = null
 }
 
 variable "description" {
   description = "A friendly description of the Web ACL"
   type        = string
+  default     = null
+}
+
+variable "data_protection_config" {
+  description = "Data protection configuration. `data_protections` is a list of objects with `field` (object with `field_keys` list and `field_type` one of `SINGLE_HEADER`/`SINGLE_COOKIE`/`SINGLE_QUERY_ARGUMENT`/`QUERY_STRING`/`BODY`), `action` (`HASH` or `SUBSTITUTION`), `exclude_rate_based_details` (bool, optional), and `exclude_rule_match_details` (bool, optional)"
+  type        = any
   default     = null
 }
 

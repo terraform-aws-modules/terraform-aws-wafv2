@@ -281,6 +281,145 @@ module "wafv2" {
         }
       }
     }
+
+    # ASN match — block requests originating from a specific Autonomous System
+    block-asn = {
+      priority = 70
+      action   = "block"
+
+      statement = {
+        asn_match_statement = {
+          asn_list = [12389, 65535]
+        }
+      }
+    }
+
+    # Byte match using uri_fragment + ja4_fingerprint
+    block-by-uri-fragment-and-ja4 = {
+      priority = 71
+      action   = "block"
+
+      statement = {
+        and_statement = {
+          statements = [
+            {
+              byte_match_statement = {
+                positional_constraint = "CONTAINS"
+                search_string         = "debug"
+                field_to_match = {
+                  uri_fragment = {
+                    fallback_behavior = "MATCH"
+                  }
+                }
+                text_transformations = [
+                  {
+                    priority = 0
+                    type     = "LOWERCASE"
+                  }
+                ]
+              }
+            },
+            {
+              byte_match_statement = {
+                positional_constraint = "STARTS_WITH"
+                search_string         = "abc123"
+                field_to_match = {
+                  ja4_fingerprint = {
+                    fallback_behavior = "NO_MATCH"
+                  }
+                }
+                text_transformations = [
+                  {
+                    priority = 0
+                    type     = "NONE"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+
+    # Rate-based with JA3 fingerprint as a custom aggregate key
+    rate-by-ja3 = {
+      priority = 72
+      action   = "block"
+
+      statement = {
+        rate_based_statement = {
+          limit                 = 200
+          aggregate_key_type    = "CUSTOM_KEYS"
+          evaluation_window_sec = 300
+
+          custom_keys = [
+            {
+              ja3_fingerprint = {
+                fallback_behavior = "NO_MATCH"
+              }
+            },
+            {
+              header = {
+                name = "x-client-id"
+                text_transformations = [
+                  {
+                    priority = 0
+                    type     = "NONE"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+
+    # Anti-DDoS managed rule group
+    aws-anti-ddos = {
+      priority        = 73
+      override_action = "none"
+
+      statement = {
+        managed_rule_group_statement = {
+          name        = "AWSManagedRulesAntiDDoSRuleSet"
+          vendor_name = "AWS"
+
+          managed_rule_group_configs = [
+            {
+              aws_managed_rules_anti_ddos_rule_set = {
+                sensitivity_to_block = "MEDIUM"
+                client_side_action_config = {
+                  challenge = {
+                    usage_of_action = "ENABLED"
+                    sensitivity     = "HIGH"
+                    exempt_uri_regular_expression = [
+                      {
+                        regex_string = "^/health$"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+
+  # Data protection — hash Authorization headers in logs / metrics / sampled requests
+  data_protection_config = {
+    data_protections = [
+      {
+        action = "HASH"
+        field = {
+          field_keys = ["authorization"]
+          field_type = "SINGLE_HEADER"
+        }
+        exclude_rate_based_details = false
+        exclude_rule_match_details = false
+      }
+    ]
   }
 
   # Inline logging configuration
