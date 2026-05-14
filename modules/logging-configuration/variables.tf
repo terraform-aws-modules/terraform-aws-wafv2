@@ -128,7 +128,7 @@ variable "logging_filter" {
     condition = var.logging_filter == null || alltrue(flatten([
       for f in try(var.logging_filter.filters, []) : [
         for c in f.conditions :
-        c.action_condition == null || contains(["ALLOW", "BLOCK", "COUNT", "CAPTCHA", "CHALLENGE", "EXCLUDED_AS_COUNT"], c.action_condition.action)
+        contains(["ALLOW", "BLOCK", "COUNT", "CAPTCHA", "CHALLENGE", "EXCLUDED_AS_COUNT", ""], try(c.action_condition.action, ""))
       ]
     ]))
     error_message = "`action_condition.action` must be one of ALLOW, BLOCK, COUNT, CAPTCHA, CHALLENGE, EXCLUDED_AS_COUNT."
