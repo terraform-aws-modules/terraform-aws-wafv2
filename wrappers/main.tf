@@ -16,6 +16,7 @@ module "wrapper" {
   logging_filter                  = try(each.value.logging_filter, var.defaults.logging_filter, null)
   logging_log_destination_configs = try(each.value.logging_log_destination_configs, var.defaults.logging_log_destination_configs, [])
   logging_redacted_fields         = try(each.value.logging_redacted_fields, var.defaults.logging_redacted_fields, [])
+  logging_region                  = try(each.value.logging_region, var.defaults.logging_region, null)
   name                            = try(each.value.name, var.defaults.name, null)
   name_prefix                     = try(each.value.name_prefix, var.defaults.name_prefix, null)
   putin_khuylo                    = try(each.value.putin_khuylo, var.defaults.putin_khuylo, true)

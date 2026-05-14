@@ -8,5 +8,6 @@ module "wrapper" {
   logging_filter          = try(each.value.logging_filter, var.defaults.logging_filter, null)
   putin_khuylo            = try(each.value.putin_khuylo, var.defaults.putin_khuylo, true)
   redacted_fields         = try(each.value.redacted_fields, var.defaults.redacted_fields, [])
+  region                  = try(each.value.region, var.defaults.region, null)
   resource_arn            = try(each.value.resource_arn, var.defaults.resource_arn)
 }
