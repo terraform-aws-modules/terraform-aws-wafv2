@@ -428,6 +428,11 @@ module "wafv2" {
                   {
                     ip_set_reference_statement = {
                       arn = module.ip_set.arn
+                      ip_set_forwarded_ip_config = {
+                        header_name       = "X-Forwarded-For"
+                        fallback_behavior = "NO_MATCH"
+                        position          = "FIRST"
+                      }
                     }
                   }
                 ]

@@ -626,6 +626,15 @@ resource "aws_wafv2_web_acl_rule" "this" {
                 for_each = try(scope_down_statement.value.ip_set_reference_statement, null) != null ? [scope_down_statement.value.ip_set_reference_statement] : []
                 content {
                   arn = ip_set_reference_statement.value.arn
+
+                  dynamic "ip_set_forwarded_ip_config" {
+                    for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                    content {
+                      fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                      header_name       = ip_set_forwarded_ip_config.value.header_name
+                      position          = ip_set_forwarded_ip_config.value.position
+                    }
+                  }
                 }
               }
               dynamic "label_match_statement" {
@@ -1436,6 +1445,15 @@ resource "aws_wafv2_web_acl_rule" "this" {
                 for_each = try(scope_down_statement.value.ip_set_reference_statement, null) != null ? [scope_down_statement.value.ip_set_reference_statement] : []
                 content {
                   arn = ip_set_reference_statement.value.arn
+
+                  dynamic "ip_set_forwarded_ip_config" {
+                    for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                    content {
+                      fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                      header_name       = ip_set_forwarded_ip_config.value.header_name
+                      position          = ip_set_forwarded_ip_config.value.position
+                    }
+                  }
                 }
               }
               dynamic "label_match_statement" {
@@ -2780,6 +2798,15 @@ resource "aws_wafv2_web_acl_rule" "this" {
                 for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
                 content {
                   arn = ip_set_reference_statement.value.arn
+
+                  dynamic "ip_set_forwarded_ip_config" {
+                    for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                    content {
+                      fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                      header_name       = ip_set_forwarded_ip_config.value.header_name
+                      position          = ip_set_forwarded_ip_config.value.position
+                    }
+                  }
                 }
               }
               dynamic "label_match_statement" {
@@ -3466,6 +3493,15 @@ resource "aws_wafv2_web_acl_rule" "this" {
                 for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
                 content {
                   arn = ip_set_reference_statement.value.arn
+
+                  dynamic "ip_set_forwarded_ip_config" {
+                    for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                    content {
+                      fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                      header_name       = ip_set_forwarded_ip_config.value.header_name
+                      position          = ip_set_forwarded_ip_config.value.position
+                    }
+                  }
                 }
               }
               dynamic "label_match_statement" {
@@ -4028,7 +4064,18 @@ resource "aws_wafv2_web_acl_rule" "this" {
                       }
                       dynamic "ip_set_reference_statement" {
                         for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
-                        content { arn = ip_set_reference_statement.value.arn }
+                        content {
+                          arn = ip_set_reference_statement.value.arn
+
+                          dynamic "ip_set_forwarded_ip_config" {
+                            for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                            content {
+                              fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                              header_name       = ip_set_forwarded_ip_config.value.header_name
+                              position          = ip_set_forwarded_ip_config.value.position
+                            }
+                          }
+                        }
                       }
                       dynamic "label_match_statement" {
                         for_each = try(statement.value.label_match_statement, null) != null ? [statement.value.label_match_statement] : []
@@ -4714,7 +4761,18 @@ resource "aws_wafv2_web_acl_rule" "this" {
                       }
                       dynamic "ip_set_reference_statement" {
                         for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
-                        content { arn = ip_set_reference_statement.value.arn }
+                        content {
+                          arn = ip_set_reference_statement.value.arn
+
+                          dynamic "ip_set_forwarded_ip_config" {
+                            for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                            content {
+                              fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                              header_name       = ip_set_forwarded_ip_config.value.header_name
+                              position          = ip_set_forwarded_ip_config.value.position
+                            }
+                          }
+                        }
                       }
                       dynamic "label_match_statement" {
                         for_each = try(statement.value.label_match_statement, null) != null ? [statement.value.label_match_statement] : []
@@ -5525,6 +5583,15 @@ resource "aws_wafv2_web_acl_rule" "this" {
                 for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
                 content {
                   arn = ip_set_reference_statement.value.arn
+
+                  dynamic "ip_set_forwarded_ip_config" {
+                    for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                    content {
+                      fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                      header_name       = ip_set_forwarded_ip_config.value.header_name
+                      position          = ip_set_forwarded_ip_config.value.position
+                    }
+                  }
                 }
               }
               dynamic "label_match_statement" {
@@ -6087,7 +6154,18 @@ resource "aws_wafv2_web_acl_rule" "this" {
                       }
                       dynamic "ip_set_reference_statement" {
                         for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
-                        content { arn = ip_set_reference_statement.value.arn }
+                        content {
+                          arn = ip_set_reference_statement.value.arn
+
+                          dynamic "ip_set_forwarded_ip_config" {
+                            for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                            content {
+                              fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                              header_name       = ip_set_forwarded_ip_config.value.header_name
+                              position          = ip_set_forwarded_ip_config.value.position
+                            }
+                          }
+                        }
                       }
                       dynamic "label_match_statement" {
                         for_each = try(statement.value.label_match_statement, null) != null ? [statement.value.label_match_statement] : []
@@ -6773,7 +6851,18 @@ resource "aws_wafv2_web_acl_rule" "this" {
                       }
                       dynamic "ip_set_reference_statement" {
                         for_each = try(statement.value.ip_set_reference_statement, null) != null ? [statement.value.ip_set_reference_statement] : []
-                        content { arn = ip_set_reference_statement.value.arn }
+                        content {
+                          arn = ip_set_reference_statement.value.arn
+
+                          dynamic "ip_set_forwarded_ip_config" {
+                            for_each = try(ip_set_reference_statement.value.ip_set_forwarded_ip_config, null) != null ? [ip_set_reference_statement.value.ip_set_forwarded_ip_config] : []
+                            content {
+                              fallback_behavior = ip_set_forwarded_ip_config.value.fallback_behavior
+                              header_name       = ip_set_forwarded_ip_config.value.header_name
+                              position          = ip_set_forwarded_ip_config.value.position
+                            }
+                          }
+                        }
                       }
                       dynamic "label_match_statement" {
                         for_each = try(statement.value.label_match_statement, null) != null ? [statement.value.label_match_statement] : []
