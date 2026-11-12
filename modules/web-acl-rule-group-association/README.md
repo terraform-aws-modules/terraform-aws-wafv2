@@ -46,14 +46,14 @@ module "association_managed" {
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.37 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.37 |
 
 ## Modules
@@ -63,13 +63,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_wafv2_web_acl_rule_group_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_rule_group_association) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created | `bool` | `true` | no |
 | <a name="input_managed_rule_group"></a> [managed\_rule\_group](#input\_managed\_rule\_group) | Managed Rule Group configuration. One of `managed_rule_group` or `rule_group_reference` must be set | `any` | `null` | no |
 | <a name="input_override_action"></a> [override\_action](#input\_override\_action) | Override action for the rule group. Valid values are `none` and `count`. Defaults to `none` | `string` | `null` | no |
@@ -84,7 +84,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_priority"></a> [priority](#output\_priority) | Priority of the rule |
 | <a name="output_rule_name"></a> [rule\_name](#output\_rule\_name) | Name of the rule created in the Web ACL |
 | <a name="output_web_acl_arn"></a> [web\_acl\_arn](#output\_web\_acl\_arn) | ARN of the parent Web ACL |

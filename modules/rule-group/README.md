@@ -66,14 +66,14 @@ module "rule_group" {
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.37 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.37 |
 
 ## Modules
@@ -83,13 +83,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_wafv2_rule_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_rule_group) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_capacity"></a> [capacity](#input\_capacity) | The web ACL capacity units (WCUs) required for this rule group. Valid range is 1 to 1500 | `number` | n/a | yes |
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created (affects all resources) | `bool` | `true` | no |
 | <a name="input_custom_response_body"></a> [custom\_response\_body](#input\_custom\_response\_body) | Map of custom response body configurations. Key is the reference key, used in custom responses | `any` | `{}` | no |
@@ -106,7 +106,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the WAF rule group |
 | <a name="output_capacity"></a> [capacity](#output\_capacity) | The capacity (WCUs) configured for the rule group |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the WAF rule group |

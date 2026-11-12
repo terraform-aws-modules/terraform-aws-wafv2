@@ -190,7 +190,7 @@ variable "create_logging_configuration" {
 }
 
 variable "logging_region" {
-  description = "Region where the WAF logging configuration will be managed. Defaults to the provider region"
+  description = "Region where the WAF logging configuration will be managed. Defaults to `var.region`"
   type        = string
   default     = null
   nullable    = true

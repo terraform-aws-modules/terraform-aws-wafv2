@@ -105,14 +105,14 @@ For managing multiple similar resources, see [wrappers](https://github.com/terra
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.37 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.37 |
 
 ## Modules
@@ -122,7 +122,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_wafv2_web_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl) | resource |
 | [aws_wafv2_web_acl_association.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_association) | resource |
 | [aws_wafv2_web_acl_logging_configuration.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl_logging_configuration) | resource |
@@ -130,7 +130,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_association_config"></a> [association\_config](#input\_association\_config) | Configuration for body inspection size limits per resource type. Keys are resource types (e.g., `CLOUDFRONT`, `API_GATEWAY`, `COGNITO_USER_POOL`, `APP_RUNNER_SERVICE`, `VERIFIED_ACCESS_INSTANCE`) | <pre>map(object({<br/>    default_size_inspection_limit = string<br/>  }))</pre> | `{}` | no |
 | <a name="input_association_resource_arns"></a> [association\_resource\_arns](#input\_association\_resource\_arns) | Map of resource ARNs to associate with the Web ACL. Key is a friendly name, value is the resource ARN | `map(string)` | `{}` | no |
 | <a name="input_captcha_config"></a> [captcha\_config](#input\_captcha\_config) | CAPTCHA configuration for the Web ACL. Specifies how long a CAPTCHA timestamp is considered valid | <pre>object({<br/>    immunity_time_property = object({<br/>      immunity_time = number<br/>    })<br/>  })</pre> | `null` | no |
@@ -144,7 +144,7 @@ No modules.
 | <a name="input_logging_filter"></a> [logging\_filter](#input\_logging\_filter) | A configuration block that specifies which web requests are kept in the logs and which are dropped | <pre>object({<br/>    default_behavior = string<br/>    filters = list(object({<br/>      behavior    = string<br/>      requirement = string<br/>      conditions = list(object({<br/>        action_condition = optional(object({<br/>          action = string<br/>        }))<br/>        label_name_condition = optional(object({<br/>          label_name = string<br/>        }))<br/>      }))<br/>    }))<br/>  })</pre> | `null` | no |
 | <a name="input_logging_log_destination_configs"></a> [logging\_log\_destination\_configs](#input\_logging\_log\_destination\_configs) | The Amazon Kinesis Data Firehose, CloudWatch Log Group, or S3 Bucket ARNs for the logging destination. Names must be prefixed with `aws-waf-logs-` | `list(string)` | `[]` | no |
 | <a name="input_logging_redacted_fields"></a> [logging\_redacted\_fields](#input\_logging\_redacted\_fields) | The parts of the request that you want to keep out of the logs. Each entry must specify exactly one of `method`, `query_string`, `uri_path`, or `single_header` | <pre>list(object({<br/>    method        = optional(object({}))<br/>    query_string  = optional(object({}))<br/>    uri_path      = optional(object({}))<br/>    single_header = optional(object({ name = string }))<br/>  }))</pre> | `[]` | no |
-| <a name="input_logging_region"></a> [logging\_region](#input\_logging\_region) | Region where the WAF logging configuration will be managed. Defaults to the provider region | `string` | `null` | no |
+| <a name="input_logging_region"></a> [logging\_region](#input\_logging\_region) | Region where the WAF logging configuration will be managed. Defaults to `var.region` | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | A friendly name of the Web ACL. Mutually exclusive with `name_prefix` | `string` | `null` | no |
 | <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Creates a unique name beginning with the specified prefix. Mutually exclusive with `name` (provider rejects both being set at apply time) | `string` | `null` | no |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine | `bool` | `true` | no |
@@ -159,7 +159,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_logging_configuration_id"></a> [logging\_configuration\_id](#output\_logging\_configuration\_id) | The ID of the WAF logging configuration |
 | <a name="output_web_acl_application_integration_url"></a> [web\_acl\_application\_integration\_url](#output\_web\_acl\_application\_integration\_url) | The URL to use in SDK integrations with managed rule groups |
 | <a name="output_web_acl_arn"></a> [web\_acl\_arn](#output\_web\_acl\_arn) | The ARN of the Web ACL |
