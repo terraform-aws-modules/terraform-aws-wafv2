@@ -14,6 +14,13 @@ variable "putin_khuylo" {
   default     = true
 }
 
+variable "region" {
+  description = "Region where the API Keys will be managed. Defaults to the provider region"
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 ################################################################################
 # API Key Configuration
 ################################################################################

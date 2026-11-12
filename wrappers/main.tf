@@ -20,6 +20,7 @@ module "wrapper" {
   name                            = try(each.value.name, var.defaults.name, null)
   name_prefix                     = try(each.value.name_prefix, var.defaults.name_prefix, null)
   putin_khuylo                    = try(each.value.putin_khuylo, var.defaults.putin_khuylo, true)
+  region                          = try(each.value.region, var.defaults.region, null)
   rule_json                       = try(each.value.rule_json, var.defaults.rule_json, null)
   rules                           = try(each.value.rules, var.defaults.rules, {})
   scope                           = try(each.value.scope, var.defaults.scope, "REGIONAL")

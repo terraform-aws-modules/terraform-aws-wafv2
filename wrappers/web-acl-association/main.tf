@@ -5,6 +5,7 @@ module "wrapper" {
 
   create       = try(each.value.create, var.defaults.create, true)
   putin_khuylo = try(each.value.putin_khuylo, var.defaults.putin_khuylo, true)
+  region       = try(each.value.region, var.defaults.region, null)
   resource_arn = try(each.value.resource_arn, var.defaults.resource_arn)
   web_acl_arn  = try(each.value.web_acl_arn, var.defaults.web_acl_arn)
 }

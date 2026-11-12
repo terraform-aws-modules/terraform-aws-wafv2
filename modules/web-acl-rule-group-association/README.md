@@ -75,6 +75,7 @@ No modules.
 | <a name="input_override_action"></a> [override\_action](#input\_override\_action) | Override action for the rule group. Valid values are `none` and `count`. Defaults to `none` | `string` | `null` | no |
 | <a name="input_priority"></a> [priority](#input\_priority) | Priority of the rule within the Web ACL. Lower numbers are evaluated first | `number` | n/a | yes |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | Region where the rule group association will be managed. Defaults to the provider region | `string` | `null` | no |
 | <a name="input_rule_group_reference"></a> [rule\_group\_reference](#input\_rule\_group\_reference) | Custom Rule Group reference. One of `managed_rule_group` or `rule_group_reference` must be set | `any` | `null` | no |
 | <a name="input_rule_name"></a> [rule\_name](#input\_rule\_name) | Name of the rule to create in the Web ACL that references the rule group (1-128 chars) | `string` | n/a | yes |
 | <a name="input_visibility_config"></a> [visibility\_config](#input\_visibility\_config) | CloudWatch metrics + sampled requests configuration | <pre>object({<br/>    cloudwatch_metrics_enabled = optional(bool, true)<br/>    metric_name                = string<br/>    sampled_requests_enabled   = optional(bool, true)<br/>  })</pre> | `null` | no |

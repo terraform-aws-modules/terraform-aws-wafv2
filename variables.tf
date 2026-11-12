@@ -49,6 +49,13 @@ variable "scope" {
   }
 }
 
+variable "region" {
+  description = "Region where the WAF ACL will be managed. Defaults to the provider region"
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
@@ -183,7 +190,7 @@ variable "create_logging_configuration" {
 }
 
 variable "logging_region" {
-  description = "Region where the WAF logging configuration will be managed. Defaults to the provider region"
+  description = "Region where the WAF logging configuration will be managed. Defaults to `var.region`"
   type        = string
   default     = null
   nullable    = true

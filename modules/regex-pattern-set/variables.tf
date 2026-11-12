@@ -14,6 +14,14 @@ variable "putin_khuylo" {
   default     = true
 }
 
+
+variable "region" {
+  description = "Region where the regex pattern will be managed. Defaults to the provider region"
+  type        = string
+  default     = null
+  nullable    = true
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)

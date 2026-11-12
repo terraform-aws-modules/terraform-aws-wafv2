@@ -13,6 +13,7 @@ resource "aws_wafv2_web_acl" "this" {
   name_prefix = var.name_prefix
   description = var.description
   scope       = var.scope
+  region      = var.region
 
   # Default action - supports string ("allow"/"block") or object for custom response
   default_action {
@@ -18350,6 +18351,8 @@ resource "aws_wafv2_web_acl" "this" {
 resource "aws_wafv2_web_acl_association" "this" {
   for_each = local.create ? var.association_resource_arns : {}
 
+  region = var.region
+
   web_acl_arn  = aws_wafv2_web_acl.this[0].arn
   resource_arn = each.value
 }
@@ -18361,7 +18364,7 @@ resource "aws_wafv2_web_acl_association" "this" {
 resource "aws_wafv2_web_acl_logging_configuration" "this" {
   count = local.create && var.create_logging_configuration ? 1 : 0
 
-  region = var.logging_region
+  region = var.logging_region != null ? var.logging_region : var.region
 
   resource_arn            = aws_wafv2_web_acl.this[0].arn
   log_destination_configs = var.logging_log_destination_configs

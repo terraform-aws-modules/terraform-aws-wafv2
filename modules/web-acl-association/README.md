@@ -43,6 +43,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created | `bool` | `true` | no |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | Region where the Web ACL association will be managed. Defaults to the provider region | `string` | `null` | no |
 | <a name="input_resource_arn"></a> [resource\_arn](#input\_resource\_arn) | The ARN of the resource to associate with the Web ACL (ALB, API Gateway, Cognito User Pool, AppSync, Verified Access) | `string` | n/a | yes |
 | <a name="input_web_acl_arn"></a> [web\_acl\_arn](#input\_web\_acl\_arn) | The ARN of the Web ACL to associate with the resource | `string` | n/a | yes |
 

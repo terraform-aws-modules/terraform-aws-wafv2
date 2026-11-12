@@ -5,6 +5,7 @@ module "wrapper" {
 
   create        = try(each.value.create, var.defaults.create, true)
   putin_khuylo  = try(each.value.putin_khuylo, var.defaults.putin_khuylo, true)
+  region        = try(each.value.region, var.defaults.region, null)
   scope         = try(each.value.scope, var.defaults.scope, "REGIONAL")
   token_domains = try(each.value.token_domains, var.defaults.token_domains)
 }

@@ -9,6 +9,8 @@ locals {
 resource "aws_wafv2_web_acl_rule_group_association" "this" {
   count = local.create ? 1 : 0
 
+  region = var.region
+
   rule_name       = var.rule_name
   priority        = var.priority
   web_acl_arn     = var.web_acl_arn

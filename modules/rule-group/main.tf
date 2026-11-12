@@ -9,6 +9,8 @@ locals {
 resource "aws_wafv2_rule_group" "this" {
   count = local.create ? 1 : 0
 
+  region = var.region
+
   name        = var.name == "" ? null : var.name
   name_prefix = var.name_prefix
   description = var.description

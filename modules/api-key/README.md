@@ -45,6 +45,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created | `bool` | `true` | no |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | Region where the API Keys will be managed. Defaults to the provider region | `string` | `null` | no |
 | <a name="input_scope"></a> [scope](#input\_scope) | Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL`. Note: WAFv2 API Keys for `CLOUDFRONT` must be created in the `us-east-1` region | `string` | `"REGIONAL"` | no |
 | <a name="input_token_domains"></a> [token\_domains](#input\_token\_domains) | The domains the API key may be used with (up to 5) | `list(string)` | n/a | yes |
 

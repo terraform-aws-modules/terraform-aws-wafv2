@@ -22,6 +22,8 @@ locals {
 resource "aws_wafv2_web_acl_rule" "this" {
   count = local.create ? 1 : 0
 
+  region = var.region
+
   name        = var.name
   priority    = var.priority
   web_acl_arn = var.web_acl_arn

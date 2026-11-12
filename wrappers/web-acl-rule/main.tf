@@ -11,6 +11,7 @@ module "wrapper" {
   override_action   = try(each.value.override_action, var.defaults.override_action, null)
   priority          = try(each.value.priority, var.defaults.priority)
   putin_khuylo      = try(each.value.putin_khuylo, var.defaults.putin_khuylo, true)
+  region            = try(each.value.region, var.defaults.region, null)
   rule_label        = try(each.value.rule_label, var.defaults.rule_label, [])
   statement         = try(each.value.statement, var.defaults.statement)
   visibility_config = try(each.value.visibility_config, var.defaults.visibility_config)

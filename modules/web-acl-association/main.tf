@@ -9,6 +9,8 @@ locals {
 resource "aws_wafv2_web_acl_association" "this" {
   count = local.create ? 1 : 0
 
+  region = var.region
+
   web_acl_arn  = var.web_acl_arn
   resource_arn = var.resource_arn
 }

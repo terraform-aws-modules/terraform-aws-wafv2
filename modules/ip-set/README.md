@@ -57,6 +57,7 @@ No modules.
 | <a name="input_ip_address_version"></a> [ip\_address\_version](#input\_ip\_address\_version) | Specify `IPV4` or `IPV6`. Valid values are `IPV4` or `IPV6` | `string` | `"IPV4"` | no |
 | <a name="input_name"></a> [name](#input\_name) | A friendly name of the IP set | `string` | n/a | yes |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine | `bool` | `true` | no |
+| <a name="input_region"></a> [region](#input\_region) | Region where the IP set will be managed. Defaults to the provider region | `string` | `null` | no |
 | <a name="input_scope"></a> [scope](#input\_scope) | Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are `CLOUDFRONT` or `REGIONAL` | `string` | `"REGIONAL"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources | `map(string)` | `{}` | no |
 

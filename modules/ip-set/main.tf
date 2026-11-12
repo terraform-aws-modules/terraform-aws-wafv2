@@ -9,6 +9,8 @@ locals {
 resource "aws_wafv2_ip_set" "this" {
   count = local.create ? 1 : 0
 
+  region = var.region
+
   name               = var.name
   description        = var.description
   scope              = var.scope
