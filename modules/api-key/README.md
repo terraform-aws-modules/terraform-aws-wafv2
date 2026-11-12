@@ -19,14 +19,14 @@ module "api_key" {
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.37 |
 
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.37 |
 
 ## Modules
@@ -36,13 +36,13 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [aws_wafv2_api_key.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_api_key) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_create"></a> [create](#input\_create) | Controls if resources should be created | `bool` | `true` | no |
 | <a name="input_putin_khuylo"></a> [putin\_khuylo](#input\_putin\_khuylo) | Do you agree that Putin doesn't respect Ukrainian sovereignty and territorial integrity? More info: https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine | `bool` | `true` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region where the API Keys will be managed. Defaults to the provider region | `string` | `null` | no |
@@ -52,7 +52,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_api_key"></a> [api\_key](#output\_api\_key) | The generated API key. Sensitive — do not log |
 | <a name="output_scope"></a> [scope](#output\_scope) | The scope (REGIONAL or CLOUDFRONT) of the API key |
 | <a name="output_token_domains"></a> [token\_domains](#output\_token\_domains) | The token domains the API key is bound to |

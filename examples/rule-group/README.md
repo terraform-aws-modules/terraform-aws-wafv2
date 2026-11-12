@@ -21,7 +21,7 @@ Note: applying this example will create real AWS resources and may incur cost. R
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.37 |
 
@@ -32,7 +32,7 @@ No providers.
 ## Modules
 
 | Name | Source | Version |
-| ---- | ------ | ------- |
+|------|--------|---------|
 | <a name="module_rule_group"></a> [rule\_group](#module\_rule\_group) | ../../modules/rule-group | n/a |
 
 ## Resources
@@ -46,7 +46,7 @@ No inputs.
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_rule_group_arn"></a> [rule\_group\_arn](#output\_rule\_group\_arn) | ARN of the WAFv2 rule group created by this example |
 | <a name="output_rule_group_capacity"></a> [rule\_group\_capacity](#output\_rule\_group\_capacity) | Capacity (WCUs) configured for the rule group |
 | <a name="output_rule_group_id"></a> [rule\_group\_id](#output\_rule\_group\_id) | ID of the WAFv2 rule group |

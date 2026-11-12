@@ -14,7 +14,7 @@ locals {
 
 ################################################################################
 # WAF v2 Web ACL For Cloudfront
-# For Cloudfront region of all WAFv2 ressources should be us-east-1
+# For Cloudfront region of all WAFv2 resources should be us-east-1
 # Also do not use association_resource_arns to associate a WAFv2 Web ACL with a Cloudfront Distribution. The AWS API call backing this resource notes that you should use the web_acl_id property on the cloudfront_distribution instead.
 ################################################################################
 
